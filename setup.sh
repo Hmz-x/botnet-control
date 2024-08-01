@@ -45,10 +45,11 @@ su "$user" -c "vim +PluginInstall +qall"
 # Install proxychains
 su "$user" -c "git clone https://github.com/rofl0r/proxychains-ng.git ~/.local/src/proxychains-ng"
 su "$user" -c "cd ~/.local/src/proxychains-ng && ./configure --prefix=/usr --sysconfdir=/etc && make"
-make -C ~/.local/src/proxychains-ng install
-make -C ~/.local/src/proxychains-ng install-config
-# Add tor proxy configuration
-echo "socks5 127.0.0.1 9050" >> /etc/proxychains.conf
+cd "/home/$user/.local/src/proxychains-ng" && make install &&
+  make install-config
+cd "$OLDPWD"
+# Add copy over proxy configuration
+cat ./proxychains.conf > /usr/etc/proxychains.conf
 
 # Install DoS tools as the non-root user
 su "$user" -c "git clone https://github.com/gkbrk/slowloris ~/.local/bin/slowloris"
