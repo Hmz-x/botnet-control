@@ -14,12 +14,13 @@ root_check
 
 # install neccessary packages
 dnf update && dnf upgrade
-dnf install -y vim tmux git
+dnf install -y vim tmux git gcc
 
 # Set user
 useradd -m "$user"
 usermod "$user" -aG wheel
 passwd "$user"
+passwd root
 
 # Install tor
 dnf install -y epel-release
@@ -34,6 +35,8 @@ systemctl enable --now crond
 su "$user" -c "mkdir -p ~/.local/bin ~/.local/src ~/.local/share"
 su "$user" -c "git clone https://github.com/Hmz-x/dotfiles ~/.local/dotfiles"
 "/home/$user/.local/dotfiles/dotfiles-install.sh" "$user"
+cp ./target.env /etc/profile.d/
+. /etc/profile.d/target.env
 
 # Set vim plugins as the non-root user
 su "$user" -c "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
@@ -66,3 +69,6 @@ gcc ~/.local/bin/xerxes/xerxes.c -o /usr/local/bin/xerxes
 # Compile http_req_overload as non-root user
 su "$user" -c "make -f ~/.local/dotfiles/misc/http_req_overload.c"
 ln -sf "/home/$user/.local/dotfiles/misc/http_req_overload" /usr/local/bin/http_req_overload
+
+# install crontab
+su "$user" -c "crontab ./dos.crontab"
