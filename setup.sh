@@ -14,7 +14,7 @@ root_check
 
 # install neccessary packages
 dnf update && dnf -y upgrade
-dnf install -y vim tmux git gcc
+dnf install -y vim tmux git gcc htop
 
 # Set user
 useradd -m "$user"
@@ -35,6 +35,10 @@ systemctl enable --now crond
 su "$user" -c "mkdir -p ~/.local/bin ~/.local/src ~/.local/share"
 su "$user" -c "git clone https://github.com/Hmz-x/dotfiles ~/.local/dotfiles"
 "/home/$user/.local/dotfiles/dotfiles-install.sh" "$user"
+if [ -d /root/botnet-control ]; then
+  cp -a /root/botnet-control "/home/$user/.local/bin/"
+  chown -R "${user}:${user}" "/home/$user/.local/bin/botnet-control"
+fi
 cp ./target.env /etc/profile.d/
 . /etc/profile.d/target.env
 
