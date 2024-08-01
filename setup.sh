@@ -13,7 +13,7 @@ root_check()
 root_check
 
 # install neccessary packages
-dnf update && dnf upgrade
+dnf update && dnf -y upgrade
 dnf install -y vim tmux git gcc
 
 # Set user
@@ -64,7 +64,7 @@ chmod 755 "/home/$user/.local/bin/saphyra/saphyra.py"
 ln -sf "/home/$user/.local/bin/saphyra/saphyra.py" /usr/local/bin/saphyra.py
 
 su "$user" -c "git clone https://github.com/isdrupter/xerxes ~/.local/bin/xerxes"
-gcc ~/.local/bin/xerxes/xerxes.c -o /usr/local/bin/xerxes
+gcc "/home/$user/.local/bin/xerxes/xerxes.c" -o /usr/local/bin/xerxes
 
 # Compile http_req_overload as non-root user
 su "$user" -c "make -f ~/.local/dotfiles/misc/http_req_overload.c"
