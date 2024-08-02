@@ -14,7 +14,7 @@ root_check
 
 # install neccessary packages
 dnf update && dnf -y upgrade
-dnf install -y vim tmux git gcc htop
+dnf install -y vim tmux git gcc wget htop
 
 # Set user
 useradd -m "$user"
@@ -78,7 +78,7 @@ ln -sf "/home/$user/.local/dotfiles/misc/http_req_overload" /usr/local/bin/http_
 
 # install libnet
 wget https://github.com/libnet/libnet/releases/download/v1.3/libnet-1.3.tar.gz
-cd libnet-1.3 && ./configure && make && sudo make install
+tar -xf libnet-1.3.tar.gz && cd libnet-1.3 && ./configure && make && sudo make install
 find /usr /lib* -name "libnet.so.9" && 
   export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH &&
   sudo ldconfig
