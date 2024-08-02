@@ -76,5 +76,12 @@ gcc "/home/$user/.local/bin/xerxes/xerxes.c" -o /usr/local/bin/xerxes
 su "$user" -c "make -f ~/.local/dotfiles/misc/http_req_overload.c"
 ln -sf "/home/$user/.local/dotfiles/misc/http_req_overload" /usr/local/bin/http_req_overload
 
+# install libnet
+wget https://github.com/libnet/libnet/releases/download/v1.3/libnet-1.3.tar.gz
+cd libnet-1.3 && ./configure && make && sudo make install
+find /usr /lib* -name "libnet.so.9" && 
+  export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH &&
+  sudo ldconfig
+
 # install crontab
 su "$user" -c "crontab ./dos.crontab"
