@@ -41,6 +41,7 @@ if [ -d /root/botnet-control ]; then
 fi
 cp ./target.env /etc/profile.d/
 . /etc/profile.d/target.env
+cp ./cmds.txt /etc/mdos.conf
 
 # Set vim plugins as the non-root user
 su "$user" -c "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
